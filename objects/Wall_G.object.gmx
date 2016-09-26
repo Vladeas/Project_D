@@ -25,88 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>wall_W=10;
+            <string>globalvar wallvect;
+globalvar wall_W;
+wall_W=10;
+wallvect[0]=instance_create(0,0,Wall);
+wallvect[0].fixb=0;
+wall_gen(0,0,wall_W,room_height,0);
+wallvect[1]=instance_create(0,0,Wall);
+wallvect[1].fixb=0;
+wall_gen(room_width-wall_W,0,room_width,room_height,1);
+wallvect[2]=instance_create(0,0,Wall);
+wallvect[2].fixb=0;
+wall_gen(wall_W,0,room_width-wall_W,wall_W,2);
+wallvect[3]=instance_create(0,0,Wall);
+wallvect[3].fixb=0;
+wall_gen(wall_W,room_height-wall_W,room_width-wall_W,room_height,3);
 
-idx=instance_create(0,0,Wall);
-with (idx)
-{
-    x1=0;
-    y1=0;
-    x2= other.wall_W;
-    y2=room_height;
-    //phy_active = true;
-    fix=physics_fixture_create();
-    physics_fixture_set_polygon_shape(fix);
-    physics_fixture_add_point(fix,x1,y1);
-    physics_fixture_add_point(fix,x2,y1);
-    physics_fixture_add_point(fix,x2,y2);
-    physics_fixture_add_point(fix,x1,y2);
-    physics_fixture_set_kinematic(fix);
-    physics_fixture_set_density(fix,0);
-    physics_fixture_set_friction(fix,0);
-    physics_fixture_bind(fix,other.idx);
-}
-
-
-idx=instance_create(0,0,Wall);
-with (idx)
-{
-    x1=room_width-other.wall_W;
-    y1=0;
-    x2=room_width;
-    y2=room_height;
-    //phy_active = true;
-    fix=physics_fixture_create();
-    physics_fixture_set_polygon_shape(fix);
-    physics_fixture_add_point(fix,x1,y1);
-    physics_fixture_add_point(fix,x2,y1);
-    physics_fixture_add_point(fix,x2,y2);
-    physics_fixture_add_point(fix,x1,y2);
-    physics_fixture_set_kinematic(fix);
-    physics_fixture_set_density(fix,0);
-    physics_fixture_set_friction(fix,0);
-    physics_fixture_bind(fix,other.idx);
-}
-
-idx=instance_create(0,0,Wall);
-with (idx)
-{
-    x1=other.wall_W;
-    y1=0;
-    x2=room_width-other.wall_W;
-    y2=other.wall_W;
-    //phy_active = true;
-    fix=physics_fixture_create();
-    physics_fixture_set_polygon_shape(fix);
-    physics_fixture_add_point(fix,x1,y1);
-    physics_fixture_add_point(fix,x2,y1);
-    physics_fixture_add_point(fix,x2,y2);
-    physics_fixture_add_point(fix,x1,y2);
-    physics_fixture_set_kinematic(fix);
-    physics_fixture_set_density(fix,0);
-    physics_fixture_set_friction(fix,0);
-    physics_fixture_bind(fix,other.idx);
-}
-
-idx=instance_create(0,0,Wall);
-with (idx)
-{
-    x1=other.wall_W;
-    y1=room_height-other.wall_W;
-    x2=room_width-other.wall_W;
-    y2=room_height;
-    //phy_active = true;
-    fix=physics_fixture_create();
-    physics_fixture_set_polygon_shape(fix);
-    physics_fixture_add_point(fix,x1,y1);
-    physics_fixture_add_point(fix,x2,y1);
-    physics_fixture_add_point(fix,x2,y2);
-    physics_fixture_add_point(fix,x1,y2);
-    physics_fixture_set_kinematic(fix);
-    physics_fixture_set_density(fix,0);
-    physics_fixture_set_friction(fix,0);
-    physics_fixture_bind(fix,other.idx);
-}
 
 instance_destroy();
 </string>

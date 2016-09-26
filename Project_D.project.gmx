@@ -7,13 +7,19 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sprite0</sprite>
+    <sprite>sprites\null</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\wall_gen.gml</script>
+    <script>scripts\resize_code.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\object0</object>
     <object>objects\Wall</object>
     <object>objects\Wall_G</object>
+    <object>objects\reset_display</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
