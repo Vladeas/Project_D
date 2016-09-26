@@ -60,7 +60,7 @@ if(mode==1)
 room_width=nw;
 room_height=nh;
 }
-if(application_surface_is_enabled())application_surface_enable(false);
+if(!application_surface_is_enabled())application_surface_enable(true);
 view_visible[0]=1;
 view_enabled=1;
 view_xview[0]=0;
@@ -143,7 +143,8 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_white);
+            <string>draw_enable_alphablend(false);
+draw_set_colour(c_white);
 draw_rectangle(0,0,room_width,room_height,false);
 draw_set_colour(c_black);
 </string>

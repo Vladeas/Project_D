@@ -28,8 +28,11 @@
             <string>spd = 100;
 rw=window_get_width();
 rh=window_get_height();
-physics_world_update_speed(50);
+physics_world_update_iterations(10);
 show_debug_overlay(true);
+inst=instance_create(0,0,reset_display);
+inst.mode=1;
+inst.aa=8;
 phy_bullet=1;
 </string>
           </argument>
@@ -248,7 +251,8 @@ physics_apply_local_force(0,0,-spd,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprite0,0,int64(phy_position_x),int64(phy_position_y));
+            <string>draw_enable_alphablend(false);
+draw_sprite(sprite0,0,int64(phy_position_x),int64(phy_position_y));
 </string>
           </argument>
         </arguments>
