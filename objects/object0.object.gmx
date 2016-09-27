@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = 100;
+            <string>spd = 1000;
 rw=window_get_width();
 rh=window_get_height();
 physics_world_update_iterations(10);
@@ -33,6 +33,8 @@ show_debug_overlay(true);
 inst=instance_create(0,0,reset_display);
 inst.mode=1;
 inst.aa=8;
+inst.vsync=true;
+inst.autosize=1;
 phy_bullet=1;
 </string>
           </argument>
@@ -63,6 +65,8 @@ rh=window_get_height();
 inst=instance_create(0,0,reset_display);
 inst.mode=1;
 inst.aa=8;
+inst.vsync=true;
+inst.autosize=1;
 }
 </string>
           </argument>
@@ -252,7 +256,8 @@ physics_apply_local_force(0,0,-spd,0);
           <argument>
             <kind>1</kind>
             <string>draw_enable_alphablend(false);
-draw_sprite(sprite0,0,int64(phy_position_x),int64(phy_position_y));
+draw_sprite(sprite0,0,(phy_position_x),(phy_position_y));
+draw_enable_alphablend(true);
 </string>
           </argument>
         </arguments>
@@ -262,7 +267,7 @@ draw_sprite(sprite0,0,int64(phy_position_x),int64(phy_position_y));
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>1</PhysicsObjectShape>
-  <PhysicsObjectDensity>0.0500000007450581</PhysicsObjectDensity>
+  <PhysicsObjectDensity>0.00499999988824129</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>40</PhysicsObjectLinearDamping>
@@ -271,9 +276,9 @@ draw_sprite(sprite0,0,int64(phy_position_x),int64(phy_position_y));
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>0,0</point>
-    <point>32,0</point>
-    <point>32,32</point>
-    <point>0,32</point>
+    <point>-48,-48</point>
+    <point>80,-48</point>
+    <point>80,80</point>
+    <point>-48,80</point>
   </PhysicsShapePoints>
 </object>

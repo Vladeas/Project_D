@@ -31,6 +31,12 @@ nw=0;//use nw 0:window x:custom
 nh=0;//use nh 0:window x:custom
 mode=0;//use mode 0:custom 1:custom+room_resize
 aa=0;//use x:custom
+xv=0;
+yv=0;
+wv=room_width;
+hv=room_height;
+vsync=false;
+autosize=0;
 </string>
           </argument>
         </arguments>
@@ -63,17 +69,22 @@ room_height=nh;
 if(!application_surface_is_enabled())application_surface_enable(true);
 view_visible[0]=1;
 view_enabled=1;
-view_xview[0]=0;
-view_yview[0]=0;
 view_surface_id[0]=application_surface;
 if(surface_exists(application_surface))surface_resize(application_surface,nw,nh);
 display_set_gui_size(nw,nh);
 window_set_size(nw,nh);
 wpx=window_get_x();
 wpy=window_get_y();
-display_reset(aa,true);
+display_reset(aa,vsync);
+view_xview[0]=xv;
+view_yview[0]=yv;
+view_wview[0]=wv;
+view_hview[0]=hv;
+if(autosize==1)
+{
 view_wview[0]=nw;
 view_hview[0]=nh;
+}
 alarm[0]=2;
 </string>
           </argument>
@@ -145,7 +156,7 @@ instance_destroy();
             <kind>1</kind>
             <string>draw_enable_alphablend(false);
 draw_set_colour(c_white);
-draw_rectangle(0,0,room_width,room_height,false);
+draw_rectangle(view_xview[0],view_yview[0],view_wview[0],view_hview[0],false);
 draw_set_colour(c_black);
 </string>
           </argument>
