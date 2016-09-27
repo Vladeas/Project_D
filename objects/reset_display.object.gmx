@@ -25,18 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(reset_display)if(id!=other.id)instance_destroy();
-alarm[1]=20;
-nw=0;//use nw 0:window x:custom
-nh=0;//use nh 0:window x:custom
-mode=0;//use mode 0:custom 1:custom+room_resize
-aa=0;//use x:custom
-xv=0;
-yv=0;
-wv=room_width;
-hv=room_height;
-vsync=false;
-autosize=0;
+            <string>with(reset_display)if(id!=other.id)instance_destroy();//remove previous reset_displays
+alarm[1]=20;//start after 20 frames
+nw=0;//set custom width or else take window's
+nh=0;//set custom height or else take window's
+mode=0;//mode = 1 result in room resize
+aa=0;//antialiasing level 0, 2, 4, 8
+xv=0;//x start position of default view
+yv=0;//y start position of default view
+wv=room_width;//total width of default view
+hv=room_height;//total height of default view
+vsync=false;//VSync bool
+autosize=0;//autosize = 1 result in POST-room size for the default view
+//variable initialisation
 </string>
           </argument>
         </arguments>
@@ -108,29 +109,9 @@ alarm[0]=2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if(!application_surface_is_enabled())application_surface_enable(true);
-view_visible[0]=1;
-view_enabled=1;
-view_xview[0]=0;
-view_yview[0]=0;
-view_surface_id[0]=application_surface;
-if(surface_exists(application_surface))surface_resize(application_surface,room_width,room_height);
-display_set_gui_size(room_width,room_height);
-window_set_size(room_width,room_height);
-//display_reset(0,false);
-view_wview[0]=room_width;
-view_hview[0]=room_height;
-global.ws=window_get_width();
-global.hs=window_get_height();
-global.dw=display_get_width();
-global.dh=display_get_height();
-global.wv=view_wview[0];
-global.hv=view_hview[0];
-global.rw=room_width;
-global.rh=room_height;*/
-view_surface_id[0]=application_surface;
-window_set_position(wpx,wpy);
-resize_code();
+            <string>view_surface_id[0]=application_surface;//reset surface
+window_set_position(wpx,wpy);//reset window location
+resize_code();//code to execute after display has reset
 instance_destroy();
 </string>
           </argument>
@@ -154,10 +135,12 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_enable_alphablend(false);
+            <string>draw_enable_alphablend(false);//efficiency+
 draw_set_colour(c_white);
 draw_rectangle(view_xview[0],view_yview[0],view_wview[0],view_hview[0],false);
 draw_set_colour(c_black);
+draw_enable_alphablend(true);
+//draws white overlay on entire screen
 </string>
           </argument>
         </arguments>

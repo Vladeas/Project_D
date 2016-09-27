@@ -25,17 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = 1000;
-rw=window_get_width();
+            <string>spd = 1000;//speed/mass
+
+rw=window_get_width();//prepare resize-step event
 rh=window_get_height();
+
 physics_world_update_iterations(10);
 show_debug_overlay(true);
-inst=instance_create(0,0,reset_display);
-inst.mode=1;
+
+inst=instance_create(0,0,reset_display);//create initial reset_display
+inst.mode=1;//enable room resize
 inst.aa=8;
 inst.vsync=true;
-inst.autosize=1;
-phy_bullet=1;
+inst.autosize=1;//enable view autoresize from new room size
+
+phy_bullet=1;//enable advanced physics
 </string>
           </argument>
         </arguments>
@@ -58,7 +62,8 @@ phy_bullet=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(rw!=window_get_width() || rh!=window_get_height())
+            <string>//window resize-step event
+if(rw!=window_get_width() || rh!=window_get_height())
 {
 rw=window_get_width();
 rh=window_get_height();
@@ -90,7 +95,8 @@ inst.autosize=1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>//the collision enabler event
+</string>
           </argument>
         </arguments>
       </action>
@@ -159,8 +165,7 @@ spd-=10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//phy_speed_y=spd;
-physics_apply_local_force(0,0,0,spd);
+            <string>physics_apply_local_force(0,0,0,spd);
 </string>
           </argument>
         </arguments>
@@ -183,8 +188,7 @@ physics_apply_local_force(0,0,0,spd);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//phy_speed_x=spd;
-physics_apply_local_force(0,0,spd,0);
+            <string>physics_apply_local_force(0,0,spd,0);
 </string>
           </argument>
         </arguments>
@@ -207,8 +211,7 @@ physics_apply_local_force(0,0,spd,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//phy_speed_y=-spd;
-physics_apply_local_force(0,0,0,-spd);
+            <string>physics_apply_local_force(0,0,0,-spd);
 </string>
           </argument>
         </arguments>
@@ -231,8 +234,7 @@ physics_apply_local_force(0,0,0,-spd);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//phy_speed_x=-spd;
-physics_apply_local_force(0,0,-spd,0);
+            <string>physics_apply_local_force(0,0,-spd,0);
 </string>
           </argument>
         </arguments>
@@ -255,8 +257,8 @@ physics_apply_local_force(0,0,-spd,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_enable_alphablend(false);
-draw_sprite(sprite0,0,(phy_position_x),(phy_position_y));
+            <string>draw_enable_alphablend(false);//efficency+
+draw_sprite(sprite0,0,(phy_position_x),(phy_position_y));//draw self
 draw_enable_alphablend(true);
 </string>
           </argument>

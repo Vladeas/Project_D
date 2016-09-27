@@ -25,20 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar wallvect;
-globalvar wall_W;
+            <string>//wall generation object
+globalvar wallvect;//store id's of the 4 walls index = {0, 1, 2, 3}
+globalvar wall_W;//wall's width
 wall_W=10;
+
 wallvect[0]=instance_create(0,0,Wall);
-wallvect[0].fixb=0;
+wallvect[0].fixb=0;//fixb variable initialisation
 wall_gen(0,0,wall_W,room_height,0);
 wallvect[1]=instance_create(0,0,Wall);
-wallvect[1].fixb=0;
+wallvect[1].fixb=0;//fixb variable initialisation
 wall_gen(room_width-wall_W,0,room_width,room_height,1);
 wallvect[2]=instance_create(0,0,Wall);
-wallvect[2].fixb=0;
+wallvect[2].fixb=0;//fixb variable initialisation
 wall_gen(wall_W,0,room_width-wall_W,wall_W,2);
 wallvect[3]=instance_create(0,0,Wall);
-wallvect[3].fixb=0;
+wallvect[3].fixb=0;//fixb variable initialisation
 wall_gen(wall_W,room_height-wall_W,room_width-wall_W,room_height,3);
 
 
