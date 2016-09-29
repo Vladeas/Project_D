@@ -26,6 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>spd = 1000;//speed/mass
+vsync=true;
+switch (os_type)
+    {
+    case os_windows: global.Config = 0; break;
+    case os_android: global.Config = 1; break;
+    case os_linux: global.Config = 2; break;
+    case os_macosx: global.Config = 3; break;
+    case os_ios: global.Config = 4; break;
+    case os_winphone: global.Config = 5; break;
+    }
+//if(global.Config==1)
+spd=10;
 
 rw=window_get_width();//prepare resize-step event
 rh=window_get_height();
@@ -36,7 +48,7 @@ show_debug_overlay(true);
 inst=instance_create(0,0,reset_display);//create initial reset_display
 inst.mode=1;//enable room resize
 inst.aa=8;
-inst.vsync=true;
+inst.vsync=vsync;
 inst.autosize=1;//enable view autoresize from new room size
 
 phy_bullet=1;//enable advanced physics
@@ -70,8 +82,14 @@ rh=window_get_height();
 inst=instance_create(0,0,reset_display);
 inst.mode=1;
 inst.aa=8;
-inst.vsync=true;
+inst.vsync=vsync;
 inst.autosize=1;
+}
+if(  device_mouse_check_button(0,mb_left))
+{
+dirx=point_direction(phy_position_x,phy_position_y,device_mouse_x(0),device_mouse_y(0));
+distx=point_distance(phy_position_x,phy_position_y,device_mouse_x(0),device_mouse_y(0));
+physics_apply_local_force(0,0,lengthdir_x(spd*distx,dirx),lengthdir_y(spd*distx,dirx));
 }
 </string>
           </argument>
@@ -260,6 +278,7 @@ spd-=10;
             <string>draw_enable_alphablend(false);//efficency+
 draw_sprite(sprite0,0,(phy_position_x),(phy_position_y));//draw self
 draw_enable_alphablend(true);
+draw_text(50,50,string(fps));
 </string>
           </argument>
         </arguments>
